@@ -1,1 +1,1 @@
-include($$PWD/framelesshelper/framelesshelper.pri)
+include($$PWD/framelesswindowhelper/framelesswindowhelper.pri)

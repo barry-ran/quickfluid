@@ -3,7 +3,7 @@
 #include <QQuickStyle>
 #include <QDir>
 
-#include "uibase/framelesshelper/framelesswindowhelper.h"
+#include "uibase/framelesswindowhelper/framelesswindowhelper.h"
 
 #ifdef QT_STATIC
 #  include <QQmlExtensionPlugin>
