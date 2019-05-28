@@ -1,17 +1,40 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.10
 import QtQuick.Controls.Material 2.10
+import QtQuick.Window 2.10
 
 import Fluid.Controls 1.0 as FluidControls
+import FramelessWindowHelper 1.0
 
 FluidControls.ApplicationWindow {
     visible: true
     width: 640
     height: 480
+    minimumHeight: 480
+    //maximumHeight: 680
+    minimumWidth: 640
+    //maximumWidth: 840
     title: qsTr("Hello World")
+    id: root
 
     Material.theme: Material.Dark
     font.family: "微软雅黑"
+
+    MouseArea {
+        anchors.fill: parent
+        property point pressPos
+        onPressed: pressPos = Qt.point(mouse.x, mouse.y)
+        onPositionChanged: {
+            if (root.visibility === Window.Windowed) {
+                root.x += mouse.x - pressPos.x
+                root.y += mouse.y - pressPos.y
+            }
+        }
+        // onDoubleClicked: maxButton.clicked()
+    }
+    FramelessWindowHelper {
+
+    }
 
     initialPage: FluidControls.TabbedPage {
         title: qsTr("Tabbed Page")
@@ -38,7 +61,7 @@ FluidControls.ApplicationWindow {
                 Button {
                     text: qsTr("Small")                    
                     icon.source: FluidControls.Utils.iconUrl("content/undo")
-                    icon.color: Material.accent
+                    icon.color: Material.accent                    
                 }
                 Button {
                     text: qsTr("Medium")

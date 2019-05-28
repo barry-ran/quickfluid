@@ -3,6 +3,8 @@
 #include <QQuickStyle>
 #include <QDir>
 
+#include "uibase/framelesshelper/framelesswindowhelper.h"
+
 #ifdef QT_STATIC
 #  include <QQmlExtensionPlugin>
 Q_IMPORT_PLUGIN(FluidCorePlugin)
@@ -18,6 +20,8 @@ int main(int argc, char *argv[])
     QQuickStyle::setStyle("Material");
 
     QGuiApplication app(argc, argv);
+
+    qmlRegisterType<FramelessWindowHelper>("FramelessWindowHelper", 1, 0, "FramelessWindowHelper");
 
     QQmlApplicationEngine engine;
     engine.addImportPath(QCoreApplication::applicationDirPath()
