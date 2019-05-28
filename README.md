@@ -2,10 +2,13 @@
 基于fluid快速构建qml应用
 
 # TODO
-- 无边框方案分析：
+- qml无边框方案分析：
     - qquickview
-    - [纯qml方案](https://github.com/qq574582775/Qml-Frameless-application-framework) [另一个](https://github.com/shenjing023/FramelessWindow)
-    - [另类方案](https://github.com/lowbees/FramlessWindowHelper) [另一个](https://github.com/lowbees/WindowsFramelessWindowHelper)
-    - [比较完善的方案](https://github.com/qtdevs/FramelessHelper)
+    - [Qml-Frameless-application-framework](https://github.com/qq574582775/Qml-Frameless-application-framework) 纯qml实现鼠标事件处理移动窗体（FramelessWindow + ContentWindow），有闪烁问题
+    - [FramelessWindow](https://github.com/shenjing023/FramelessWindow) 同上，没有闪烁问题
+    - 不考虑 [MyCloudMusic](https://github.com/shenjing023/MyCloudMusic) QWidget嵌入QQuickWidget，QQuickWidget加载的qml来显示界面，FramelessHelper在QWidget中installEventFilter安装事件过滤器处理鼠标事件
+    - 不考虑（只支持windows可考虑） [FramelessHelper](https://github.com/qtdevs/FramelessHelper) 比较完善的方案，qwidget和qml都支持，支持windows特性，但是只支持windows
+    - 纠结 [FramlessWindowHelper](https://github.com/lowbees/FramlessWindowHelper) c++代码向qml中注册一个qml对象，c++代码遍历parent找到window，installeventfilter处理事件
+    
 - qml使用http请求可考虑[HttpRequest](https://github.com/qyvlik/HttpRequest)
 - 文件下载可以考虑[QuickDownload](https://github.com/Larpon/QuickDownload)
