@@ -64,16 +64,6 @@ ApplicationWindow {
           id: rect
           color: "red"
           anchors.fill: parent
-        }
-
-        DropShadow {
-          anchors.fill: rect
-          horizontalOffset: 2
-          verticalOffset: 2
-          radius: 5
-          samples: 5
-          source: rect
-          color: "black"
-        }
+        }        
     }
 }
