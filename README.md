@@ -12,3 +12,4 @@
     
 - qml使用http请求可考虑[HttpRequest](https://github.com/qyvlik/HttpRequest)
 - 文件下载可以考虑[QuickDownload](https://github.com/Larpon/QuickDownload)
+- [窗体阴影](https://stackoverflow.com/questions/18754057/shadow-for-qml-frameless-windows)
