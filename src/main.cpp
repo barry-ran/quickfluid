@@ -5,6 +5,10 @@
 
 #include "uibase/framelesswindowhelper/framelesswindowhelper.h"
 
+#ifdef Q_OS_WIN
+#include "uibase/borderlesswindow/borderlesswindow.h"
+#endif
+
 #ifdef QT_STATIC
 #  include <QQmlExtensionPlugin>
 Q_IMPORT_PLUGIN(FluidCorePlugin)
@@ -15,13 +19,16 @@ Q_IMPORT_PLUGIN(FluidTemplatesPlugin)
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    //QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QQuickStyle::setStyle("Material");
 
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<FramelessWindowHelper>("FramelessWindowHelper", 1, 0, "FramelessWindowHelper");
+#ifdef Q_OS_WIN
+    qmlRegisterType<BorderlessWindow>("SampleApp", 1, 0, "BorderlessWindow");
+#endif
 
     QQmlApplicationEngine engine;
     engine.addImportPath(QCoreApplication::applicationDirPath()

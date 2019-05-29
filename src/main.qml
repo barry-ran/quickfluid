@@ -6,6 +6,7 @@ import QtGraphicalEffects 1.0
 
 import Fluid.Controls 1.0 as FluidControls
 import FramelessWindowHelper 1.0
+//import SampleApp 1.0
 
 import "./uibase" as UIBase
 
@@ -40,16 +41,9 @@ ApplicationWindow {
         onDoubleClicked: root.visibility = Window.Maximized
     }
 
-
-    DropShadow {
-        anchors.fill: mainContent
-        horizontalOffset: 1
-        verticalOffset: 1
-        radius: moveBar.pressed ? 10 : 8
-        samples: 10
-        source: mainContent
-        color: "black"
-        Behavior on radius { PropertyAnimation { duration: 100 } }
+    UIBase.ControlShadow {
+        destControl: mainContent
+        pressed: moveBar.pressed
     }
 
     Window {
@@ -60,10 +54,43 @@ ApplicationWindow {
         color: "#00000000"
         FramelessWindowHelper {}
 
+        UIBase.ControlShadow {
+            destControl: rect
+            pressed: moveBar2.pressed
+        }
+
+        UIBase.DragMoveBar {
+            id: moveBar2
+            x: 0
+            y: 0
+            width: parent.width
+            height: 50
+
+            destWindow: main
+            onDoubleClicked: main.visibility = Window.Maximized
+        }
+
         Rectangle {
           id: rect
           color: "red"
           anchors.fill: parent
         }        
+    }    
+}
+
+/*
+BorderlessWindow {
+    width: 400
+    height: 400
+    visible: true
+    color: "aqua"
+
+    Rectangle {
+        x: 0 // Position 0,0 should be the very top-left of the window, but its not.
+        y: 0
+        width: parent.width
+        height: 20
+        color: "purple"
     }
 }
+*/
