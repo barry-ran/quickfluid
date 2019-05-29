@@ -8,7 +8,9 @@ import FramelessWindowHelper 1.0
 
 import "./uibase" as UIBase
 
-FluidControls.ApplicationWindow {
+ApplicationWindow {
+    id: root
+
     visible: true
     width: 640
     height: 480
@@ -16,9 +18,9 @@ FluidControls.ApplicationWindow {
     //maximumHeight: 680
     minimumWidth: 640
     //maximumWidth: 840
-    id: root
 
     Material.theme: Material.Dark
+
     font.family: "微软雅黑"
 
     FramelessWindowHelper {}
@@ -31,18 +33,5 @@ FluidControls.ApplicationWindow {
 
         destWindow: root
         onDoubleClicked: root.visibility = Window.Maximized
-    }
-
-    initialPage: FluidControls.TabbedPage {
-        title: qsTr("Tabbed Page")        
-
-        actions: [
-            FluidControls.Action {
-                icon.source: FluidControls.Utils.iconUrl("content/add")
-                text: qsTr("Add content")
-                toolTip: qsTr("Add content")
-                onTriggered: console.log("Example action...")
-            }
-        ]            
-    }
+    }    
 }
