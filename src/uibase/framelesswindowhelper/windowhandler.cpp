@@ -26,6 +26,9 @@ void WindowHandler::handleEvent(QEvent *event)
     case QEvent::MouseButtonRelease:
         handleMouseReleaseEvent(static_cast<QMouseEvent*>(event));
         break;
+    case QEvent::Leave:
+        changeCursorShape(Qt::ArrowCursor);
+        break;
     default:
         break;
     }
@@ -62,25 +65,33 @@ void WindowHandler::updateCursorShape(const QPoint &pos)
     }
     if (m_window->visibility() == QQuickWindow::FullScreen
             || m_window->visibility() == QQuickWindow::Maximized) {
-        while (QGuiApplication::overrideCursor()) {
-            QGuiApplication::restoreOverrideCursor();
-        }
+        changeCursorShape(Qt::ArrowCursor);
         return;
     }
 
     checkOnEdges(pos);
     if (m_onTopLeft || m_onBottomRight) {
-        QGuiApplication::setOverrideCursor(Qt::SizeFDiagCursor);
+        changeCursorShape(Qt::SizeFDiagCursor);
     } else if (m_onTopRight || m_onBottomLeft) {
-        QGuiApplication::setOverrideCursor(Qt::SizeBDiagCursor);
+        changeCursorShape(Qt::SizeBDiagCursor);
     } else if (m_onLeft || m_onRight) {
-        QGuiApplication::setOverrideCursor(Qt::SizeHorCursor);
+        changeCursorShape(Qt::SizeHorCursor);
     } else if (m_onTop || m_onBottom) {
-        QGuiApplication::setOverrideCursor(Qt::SizeVerCursor);
+        changeCursorShape(Qt::SizeVerCursor);
     } else {
-        // 将鼠标形状恢复
-        while (QGuiApplication::overrideCursor()) {
-            QGuiApplication::restoreOverrideCursor();
+        changeCursorShape(Qt::ArrowCursor);
+    }
+}
+
+void WindowHandler::changeCursorShape(Qt::CursorShape shape)
+{
+    if (Qt::ArrowCursor == shape && QGuiApplication::overrideCursor()) {
+        QGuiApplication::restoreOverrideCursor();
+    } else {
+        if (QGuiApplication::overrideCursor()) {
+            QGuiApplication::changeOverrideCursor(shape);
+        } else {
+            QGuiApplication::setOverrideCursor(shape);
         }
     }
 }

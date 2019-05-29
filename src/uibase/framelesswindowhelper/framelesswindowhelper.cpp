@@ -52,6 +52,7 @@ bool FramelessWindowHelper::eventFilter(QObject *watched, QEvent *event)
     case QEvent::MouseButtonPress:
     case QEvent::MouseMove:
     case QEvent::MouseButtonRelease:
+    case QEvent::Leave:
     {        
         if (m_handler) {
             m_handler->handleEvent(event);
@@ -60,7 +61,7 @@ bool FramelessWindowHelper::eventFilter(QObject *watched, QEvent *event)
             }
         }        
     }
-        break;
+        break;   
     default:
         break;
     }

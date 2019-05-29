@@ -52,7 +52,6 @@ ApplicationWindow {
         Behavior on radius { PropertyAnimation { duration: 100 } }
     }
 
-/*
     Window {
         id: main
         visible: true
@@ -77,5 +76,4 @@ ApplicationWindow {
           color: "black"
         }
     }
-    */
 }

@@ -7,6 +7,7 @@ class QQuickWindow;
 class QEvent;
 class QMouseEvent;
 class QPoint;
+class QCursor;
 
 class WindowHandler
 {
@@ -30,6 +31,8 @@ private:
     void checkOnEdges(const QPoint &pos);
     // 更新鼠标样式
     void updateCursorShape(const QPoint &pos);
+    // 更新鼠标样式
+    void changeCursorShape(Qt::CursorShape shape);
     // 更改窗口大小和位置
     void resizeWindow(const QPoint &pos);
     // 处理鼠标按下事件
