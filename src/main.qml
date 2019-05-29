@@ -20,26 +20,41 @@ ApplicationWindow {
     Material.theme: Material.Dark
     font.family: "微软雅黑"
 
-    FramelessWindowHelper {}
-
+    FramelessWindowHelper {}    
 
     Page {
         id: mainContent
         anchors.fill: parent
         anchors.margins: (root.visibility === Window.FullScreen || root.visibility === Window.Maximized) ? 0 : 10
 
-    }
+        UIBase.DragMoveBar {
+            id: moveBar
+            x: 0
+            y: 0
+            width: parent.width
+            height: 50
 
-    UIBase.DragMoveBar {
-        id: moveBar
-        x: 0
-        y: 0
-        width: parent.width
-        height: 50
+            destWindow: root
+            onDoubleClicked: root.visibility = Window.Maximized
+        }
 
-        destWindow: root
-        onDoubleClicked: root.visibility = Window.Maximized
-    }
+        Button {
+            id: closeBtn
+            width: 50
+            height: 50
+            //icon.source: FluidControls.Utils.iconUrl("navigation/close")
+            icon.source: FluidControls.Utils.iconUrl("action/minimize")
+            icon.color: hovered ? "#FF5439" : "#FFFFFF"
+            icon.width: width
+            icon.height: height
+
+            background: Rectangle {
+                opacity: 0
+            }
+            onClicked: root.close()
+        }
+
+    }    
 
     UIBase.ControlShadow {
         destControl: mainContent
