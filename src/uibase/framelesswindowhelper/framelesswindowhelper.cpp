@@ -48,7 +48,7 @@ void FramelessWindowHelper::componentComplete()
 
 bool FramelessWindowHelper::eventFilter(QObject *watched, QEvent *event)
 {
-    switch (event->type()) {
+    switch (event->type()) {    
     case QEvent::MouseButtonPress:
     case QEvent::MouseMove:
     case QEvent::MouseButtonRelease:

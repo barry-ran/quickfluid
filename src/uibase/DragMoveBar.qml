@@ -5,6 +5,7 @@ Item {
     id: root
 
     property alias destWindow: dragMoveBar.destWindow
+    property alias pressed: dragMoveBar.pressed
 
     signal doubleClicked()
 

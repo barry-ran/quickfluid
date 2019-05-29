@@ -51,7 +51,7 @@ private:
     bool m_onEdges = false;
     bool m_leftButtonPress = false;
     bool m_resizing = false;
-    int m_edgeSize = 5;
+    int m_edgeSize = 10;
     QQuickWindow *m_window = Q_NULLPTR;
     QRect m_oldWindowRect;
 };
